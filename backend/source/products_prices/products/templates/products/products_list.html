@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+    <h1>Products list</h1>
+    <aside class="m-2 m-auto w-75 d-none" id="modal_alert_no_products_selected" role="button" data-toggle="tooltip" data-placement="top" title="Dismiss">
+        <div class="alert alert-danger " role="alert" onclick="hide_modal('modal_alert_no_products_selected')">
+            Please select products to calculate.
+        </div>
+    </aside>
+    <section class="m-auto p-2 container-lg border border-1">
+        {% include 'products/components/product_list_instructions.html' %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Description</th>
+              <th scope="col">Select</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+                <tr>
+                  <th scope="row">{{product.id}}</th>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>
+                      <a
+                          class="btn btn-primary" data-bs-toggle="collapse"
+                          href="#product_description_{{product.id}}"
+                          role="button" aria-expanded="false"
+                          aria-controls="product_description_{{product.id}}"
+                          id="btn_show_product_description_{{product.id}}"
+                          onclick="toggleLabel('btn_show_product_description_{{product.id}}')"
+                      >
+                        Show
+                      </a>
+                    <div class="collapse" id="product_description_{{product.id}}">
+                      <div class="card card-body">
+                        {{ product.description }}
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <input class="border-1" type="checkbox" name="products_selection" id="select_product_{{product.id}}" autocomplete="off" >
+                  </td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% include 'products/components/product_list_instructions.html' %}
+    </section>
+<!--    Form to submit the list of selected values-->
+    <form action="/calculate/" method="post" class="d-none" id="send_values">
+        <input type="hidden" name="products_list" value="" />
+        {% csrf_token %}
+    </form>
+{% endblock content %}
+
+{% block local_scripts %}
+    <script>
+        function toggleLabel(id) {
+            const btn = document.getElementById(`${id}`)
+            const btn_text = btn.text.trim()
+            if(btn_text === 'Show') {
+                btn.innerHTML = 'Hide'
+            } else {
+                btn.innerHTML = 'Show'
+            }
+        }
+
+        function calculateTotal(){
+            // Get selected products from displayed list
+            const selected_products = document.querySelectorAll('input[name=products_selection]:checked');
+            let selected_products_list = []
+
+            selected_products.forEach((product) => {
+                // const product_details = {
+                //     product_id: parseInt(product.parentElement.parentElement.children[0].textContent),
+                //     product_qtd: parseInt(product.parentElement.nextElementSibling.children[0].value)
+                //     }
+                    // const product_id =  parseInt(product.parentElement.parentElement.children[0].textContent)
+                    // const product_qtd = parseInt(product.parentElement.nextElementSibling.children[0].value)
+                selected_products_list.push(parseInt(product.parentElement.parentElement.children[0].textContent))
+                // selected_products_list = {...selected_products_list, idx: {product_id: product_qtd}}
+                // product_obj[product_id] = product_qtd
+                // console.log(product_id, product_qtd)
+                // selected_products_list.push({[product_id]: product_qtd})
+                // selected_products_list.push({[parseInt(product_id)]: product_qtd})
+            })
+            console.log(selected_products_list)
+            if(selected_products_list.length === 0){
+                document.getElementById('modal_alert_no_products_selected').classList.remove('d-none')
+                return
+            }
+            const send_form = document.getElementById('send_values')
+            // Assign values to field
+            // send_form.firstElementChild.value = JSON.stringify(selected_products_list)
+            send_form.firstElementChild.value = selected_products_list
+            send_form.submit()
+        }
+        function hide_modal(modal_id) {
+            document.getElementById(modal_id).classList.add('d-none')
+        }
+    </script>
+{% endblock local_scripts %}

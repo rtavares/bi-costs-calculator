@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "costs-management"
+version = "0.1.0"
+description = "P.O.C. for a costs management system"
+authors = ["Raul Tavares <rtavares+djbp@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.6"
+mypy = "^1.11.0"
+python-dotenv = "^1.0.1"
+psycopg2-binary = "^2.9.9"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+flake8 = "^7.1.0"
+pylint = "^3.2.5"
+black = "^24.4.2"
+django-debug-toolbar = "^4.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

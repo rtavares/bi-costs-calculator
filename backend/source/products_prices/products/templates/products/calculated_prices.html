@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+    <h1>Products Calculated Prices</h1>
+
+<section class="m-auto p-2 container-lg border border-1">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+<!--              <th scope="col">Description</th>-->
+<!--              <th scope="col">Qtd</th>-->
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+                <tr>
+                  <th scope="row">{{product.id}}</th>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>
+<!--                      <a-->
+<!--                          class="btn btn-primary" data-bs-toggle="collapse"-->
+<!--                          href="#product_description_{{product.id}}"-->
+<!--                          role="button" aria-expanded="false"-->
+<!--                          aria-controls="product_description_{{product.id}}"-->
+<!--                          id="btn_show_product_description_{{product.id}}"-->
+<!--                          onclick="toggleLabel('btn_show_product_description_{{product.id}}')"-->
+<!--                      >-->
+<!--                        Show-->
+<!--                      </a>-->
+<!--                    <div class="collapse" id="product_description_{{product.id}}">-->
+<!--                      <div class="card card-body">-->
+<!--                        {{ product.description }}-->
+<!--                      </div>-->
+<!--                    </div>-->
+                  </td>
+<!--                  <td>-->
+<!--                    <input class="border-1" type="checkbox" name="products_selection" id="select_product_{{product.id}}" autocomplete="off" >-->
+<!--                  </td>-->
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <aside>
+        Total of selected products: {{products_total}}
+        </aside>
+    </section>
+    <aside class="m-2">
+        <div class="text-center">
+            <a href="/">
+                <button
+                    type="button"
+                    data-mdb-button-init data-mdb-ripple-init class="btn btn-primary  m-auto">
+                    Home
+                </button>
+            </a>
+        </div>
+
+    </aside>
+{% endblock content %}
+
