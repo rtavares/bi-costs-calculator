@@ -33,5 +33,6 @@ startbg: ## Start project running in dettached mode - background.
 stop: ## Stop the running project.
 	@docker-compose stop
 requirements: ## Update requirements.txt file
-	@#poetry export -f requirements.txt --output project/backend/requirements.txt
 	poetry export -v -o backend/requirements.txt
+requirements-simple: ## Update requirements-simple.txt file, without hashes
+	poetry export --without-hashes -v -o backend/requirements-simple.txt
