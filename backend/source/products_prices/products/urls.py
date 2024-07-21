@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import BackOfficeView, CalculatePriceView, ProductsListView, list_calculated_prices
+from .views import (BackOfficeView, CalculatePriceView, ProductsListView,
+                    list_calculated_prices)
 
 app_name = 'products'
 
