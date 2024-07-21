@@ -1,9 +1,7 @@
-import json
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
-from django.shortcuts import redirect, render, resolve_url, reverse
-from django.views.generic import ListView, TemplateView, View
+from django.shortcuts import render
+from django.views.generic import ListView, View
 
 from .models import Product
 
