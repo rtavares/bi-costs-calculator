@@ -29,7 +29,7 @@ except ImportError:
 
     SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
 
-    with open(os.path.join(SETTINGS_DIR+'/secret_key.py'), 'w') as file:
+    with open(os.path.join(SETTINGS_DIR + "/secret_key.py"), "w") as file:
         file.write("SECRET_KEY = '" + get_random_secret_key() + "'\n")
 
     from .secret_key import SECRET_KEY  # noqa: F401
@@ -37,7 +37,10 @@ except ImportError:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['openmindszone.pythonanywhere.com', 'www.openmindszone.pythonanywhere.com']
+ALLOWED_HOSTS = [
+    "openmindszone.pythonanywhere.com",
+    "www.openmindszone.pythonanywhere.com",
+]
 
 
 # Application definition
@@ -50,9 +53,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # 3rd party apps
-
     # Local apps
     "products.apps.ProductsConfig",
 ]
@@ -72,7 +73,7 @@ ROOT_URLCONF = "products_prices.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['templates'],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -132,7 +133,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "products:home"
 LOGOUT_REDIRECT_URL = "products:home"
 
-INTERNAL_IPS = ('127.0.0.1', '0.0.0.0', 'localhost',)
+INTERNAL_IPS = (
+    "127.0.0.1",
+    "0.0.0.0",
+    "localhost",
+)
 
 sentry_sdk.init(
     dsn="https://cc136189afcedb53a543c7f7cc77f60c@o4507621255348224.ingest.de.sentry.io/4507639375986768",

@@ -5,8 +5,12 @@ from django.db import models
 class Common(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(User, related_name='author', on_delete=models.CASCADE, null=True, blank=True)
-    last_modified_by = models.ForeignKey(User, related_name='editor', on_delete=models.CASCADE, null=True, blank=True)
+    created_by = models.ForeignKey(
+        User, related_name="author", on_delete=models.CASCADE, null=True, blank=True
+    )
+    last_modified_by = models.ForeignKey(
+        User, related_name="editor", on_delete=models.CASCADE, null=True, blank=True
+    )
 
 
 class Product(Common):
