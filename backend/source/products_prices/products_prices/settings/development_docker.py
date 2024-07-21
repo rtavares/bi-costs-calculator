@@ -1,4 +1,5 @@
 """ Settings file to run the project locally during development to a production environment, containerized."""
+
 from .development import *
 
 # Database
