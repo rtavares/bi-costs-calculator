@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     # 3rd party apps
     # Local apps
     "products.apps.ProductsConfig",
+    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
