@@ -24,11 +24,9 @@ class CalculatePriceView(LoginRequiredMixin, View):
     template_name = 'products/calculated_prices.html'
 
     def post(self, request):
-        # import pdb; pdb.set_trace()
-        products_list = [int(p) for p in request.POST['products_list'].split(',')]
-        print(products_list)
+        products_to_price = [int(p) for p in request.POST['products_list'].split(',')]
 
-        products = Product.objects.filter(pk__in=products_list)
+        products = Product.objects.filter(pk__in=products_to_price)
         products_total = products.aggregate(Sum('price'))
 
         context = {

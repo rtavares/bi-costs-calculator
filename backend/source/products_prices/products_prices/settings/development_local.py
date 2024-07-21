@@ -3,7 +3,7 @@
 from .development import *
 
 DEBUG = True
-ALLOWED_HOSTS = ['*']  # To be changed
+ALLOWED_HOSTS = ['openmindszone.pythonanywhere.com', 'www.openmindszone.pythonanywhere.com']
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
