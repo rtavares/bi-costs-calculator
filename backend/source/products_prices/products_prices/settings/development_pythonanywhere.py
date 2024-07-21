@@ -1,6 +1,12 @@
-""" Settings file to run the project locally during development to a production environment, containerized."""
+""" Settings file to run the project locally on the local OS using a virtual environment."""
 
 from .development import *
+
+DEBUG = False
+ALLOWED_HOSTS = [
+    "openmindszone.pythonanywhere.com",
+    "www.openmindszone.pythonanywhere.com",
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

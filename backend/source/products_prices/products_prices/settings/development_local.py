@@ -3,7 +3,7 @@
 from .development import *
 
 DEBUG = True
-ALLOWED_HOSTS = ['openmindszone.pythonanywhere.com', 'www.openmindszone.pythonanywhere.com']
+ALLOWED_HOSTS = ["*"]
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -14,4 +14,3 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
