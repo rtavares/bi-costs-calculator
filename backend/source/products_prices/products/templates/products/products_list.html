@@ -76,18 +76,7 @@
             let selected_products_list = []
 
             selected_products.forEach((product) => {
-                // const product_details = {
-                //     product_id: parseInt(product.parentElement.parentElement.children[0].textContent),
-                //     product_qtd: parseInt(product.parentElement.nextElementSibling.children[0].value)
-                //     }
-                    // const product_id =  parseInt(product.parentElement.parentElement.children[0].textContent)
-                    // const product_qtd = parseInt(product.parentElement.nextElementSibling.children[0].value)
                 selected_products_list.push(parseInt(product.parentElement.parentElement.children[0].textContent))
-                // selected_products_list = {...selected_products_list, idx: {product_id: product_qtd}}
-                // product_obj[product_id] = product_qtd
-                // console.log(product_id, product_qtd)
-                // selected_products_list.push({[product_id]: product_qtd})
-                // selected_products_list.push({[parseInt(product_id)]: product_qtd})
             })
             console.log(selected_products_list)
             if(selected_products_list.length === 0){
@@ -96,7 +85,6 @@
             }
             const send_form = document.getElementById('send_values')
             // Assign values to field
-            // send_form.firstElementChild.value = JSON.stringify(selected_products_list)
             send_form.firstElementChild.value = selected_products_list
             send_form.submit()
         }
