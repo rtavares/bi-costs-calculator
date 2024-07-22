@@ -7,7 +7,7 @@ This projects is a Proof Of Concept (POC), so some functionalities are not avail
 
 ## Code repository
 https://github.com/rtavares/bi-costs-calculator   
-Note: to help speed up the development, we used this Django bluprint - same author - as a bootstraper: https://github.com/rtavares/django-blueprint-generic-views
+Note: to help speed up the development, we used this Django blueprint - same author - as a bootstraper: https://github.com/rtavares/django-blueprint-generic-views
 
 ## Live Running and monitoring
 - Deployed on [PythonAnywhere](https://www.pythonanywhere.com/) at https://openmindszone.pythonanywhere.com/    
@@ -16,13 +16,14 @@ Note: to help speed up the development, we used this Django bluprint - same auth
 ## Tech stack
 - Programming language - [Python](https://www.python.org/) - 3.10.5
   - The project was initially developed on Python 3.12.4.    
-  However, due it being deployed to PythonAnywhere that only supports Python 3.10.5, this versions was adopted.   
-  Also considering the development environment should mirror the production environment. 
+  However, due it being deployed to PythonAnywhere that only supports Python 3.10.5, this version was adopted.   
+  Also considering that the development environment should mirror the production environment. 
 - Web framework - [Django](https://www.djangoproject.com/) - 5.0.7
 - Python version manager - [PyEnv](https://github.com/pyenv/pyenv) - 2.4.4
 - Python dependencies manager - [Poetry](https://python-poetry.org/) - 1.8.3
 - Project tasks manager - [Make](https://www.gnu.org/software/make/) - 3.81
-- Code Version Control System - [Git](https://git-scm.com/) - 2.39.3 
+- Code Version Control System - [Git](https://git-scm.com/) - 2.39.3
+- DVCS host - GitHub
 - OS - MacOS Sonona - 14.5
 ### Development environments
 - On top of local OS, inside a virtual environment
@@ -36,10 +37,13 @@ Note: to help speed up the development, we used this Django bluprint - same auth
   - Using Poetry: 
     - `poetry install`
     - `poetry shell`
-  - Using `python -v venv <project_env>`:
-    - `<project_env>/bin/activate`
+  - Using `python -v venv <project_venv>`:
+    - `<project_venv>/bin/activate`
       - `pip install -U pip`
       - `pip install -r backend/requirements.txt`
+  - Bootstrapping the project:
+    - `backend/source/products_prices/manage.py migrate --settings=products_prices.settings.development_local`
+    - `backend/source/products_prices/manage.py createsuperuser --settings=products_prices.settings.development_local`
 ## Running the project
 - Locally inside the virtualenv:
   - Type `make` to see a list of available commands
@@ -50,7 +54,7 @@ Please feel free to open an issue on the GitHub repository of the project.
 ### Code
 - Add TypeHints
 ### Application
-- Login page: Manage incorrect credentials
+- Login and signup pages: Manage incorrect values
 - Style numbers display on a more readable form
 - Add CRUD for backoffice to manage Products.
   - Once the Django Admin should not be made available for end-users.
