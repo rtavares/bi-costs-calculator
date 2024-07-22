@@ -1,22 +1,72 @@
-# Python Django Project - POC of a costs management system for B.I.
+# Python Django Project - POC of a costs calculator for B.I..
 ## Goal
-This project is intended to be a basic Python Django project start accelerator.
-- If we have to frequently start new projects, despite Django being an amazing framework to develop web based applications, inevitably we end up repeating ourselves a lot on the initial phases, recreating a lot of boilerplate over an over.   
-- And worst than that, we can find ourselves taking different approaches every time, leading to different styles, structures and choices for projects that should be look-alike in the same Team, project or company.
-- So, is a good idea to have common bootstrap base.
+Get the total price of a set of selected products
+
+## Disclaimer:
+This projects is a Proof Of Concept (POC), so some functionalities are not available and other could be unreliable. 
+
+## Code repository
+https://github.com/rtavares/bi-costs-calculator   
+Note: to help speed up the development, we used this Django bluprint - same author - as a bootstraper: https://github.com/rtavares/django-blueprint-generic-views
+
+## Live Running and monitoring
+- Deployed on [PythonAnywhere](https://www.pythonanywhere.com/) at https://openmindszone.pythonanywhere.com/    
+- Live running monitoring: [Sentry](https://sentry.io/welcome/) - free tier
+
 ## Tech stack
-- Python - 3.12.4
-- Django - 5
-- Python version managemer - PyEnv 
-- Dependencies manager - Poetry
-- Make - to manage project current tasks
+- Programming language - [Python](https://www.python.org/) - 3.10.5
+  - The project was initially developed on Python 3.12.4.    
+  However, due it being deployed to PythonAnywhere that only supports Python 3.10.5, this versions was adopted.   
+  Also considering the development environment should mirror the production environment. 
+- Web framework - [Django](https://www.djangoproject.com/) - 5.0.7
+- Python version manager - [PyEnv](https://github.com/pyenv/pyenv) - 2.4.4
+- Python dependencies manager - [Poetry](https://python-poetry.org/) - 1.8.3
+- Project tasks manager - [Make](https://www.gnu.org/software/make/) - 3.81
+- Code Version Control System - [Git](https://git-scm.com/) - 2.39.3 
 - OS - MacOS Sonona - 14.5
-### Running environment
-- On top of local OS
-- On container using Docker
+### Development environments
+- On top of local OS, inside a virtual environment
+- On containers using Docker - TBD
 ## Local setup
-## Running
-- 
+- Clone the code repository to your local development folder - `git clone https://github.com/rtavares/bi-costs-calculator.git`
+  - The "project root" is the directory `project` from where the commands should be run.
+- Setup Python version to 3.10.5
+- Create and activate a Python virtual environment
+- Install the project dependencies
+  - Using Poetry: 
+    - `poetry install`
+    - `poetry shell`
+  - Using `python -v venv <project_env>`:
+    - `<project_env>/bin/activate`
+      - `pip install -U pip`
+      - `pip install -r backend/requirements.txt`
+## Running the project
+- Locally inside the virtualenv:
+  - Type `make` to see a list of available commands
+  - `make run-local` starts the project locally, available on the usual Django port 8000.
+### Questions?
+Please feel free to open an issue on the GitHub repository of the project.
+## To-Do
+### Code
+- Add TypeHints
+### Application
+- Login page: Manage incorrect credentials
+- Style numbers display on a more readable form
+- Add CRUD for backoffice to manage Products.
+  - Once the Django Admin should not be made available for end-users.
+- Create 3 user levels
+  - Admin
+  - Content manager
+  - User
+- Create a standalone Client App.
+  - Vue / Nuxt / Vuetify would be a good option
+### Project
+- Add git pre-commit hooks
+- Add tests
+- Add containerized environment
+- Add Terraform script to deploy to AWS ECS
+
+----
 
 
 

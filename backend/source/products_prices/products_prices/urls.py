@@ -13,6 +13,7 @@ from django.views.generic import (
 urlpatterns = [
     # path('', TemplateView.as_view(template_name="startup.html"), name="home"),
     path("", include("products.urls", namespace="products")),
+    path("accounts/", include("accounts.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("admin/", admin.site.urls),
 ]
