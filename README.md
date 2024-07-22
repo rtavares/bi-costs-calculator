@@ -19,6 +19,7 @@ Note: to help speed up the development, we used this Django blueprint - same aut
   However, due it being deployed to PythonAnywhere that only supports Python 3.10.5, this version was adopted.   
   Also considering that the development environment should mirror the production environment. 
 - Web framework - [Django](https://www.djangoproject.com/) - 5.0.7
+- UI framework - [Bootstrap](https://getbootstrap.com/)  - 5
 - Python version manager - [PyEnv](https://github.com/pyenv/pyenv) - 2.4.4
 - Python dependencies manager - [Poetry](https://python-poetry.org/) - 1.8.3
 - Project tasks manager - [Make](https://www.gnu.org/software/make/) - 3.81
