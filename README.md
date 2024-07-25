@@ -3,7 +3,7 @@
 Get the total price of a set of selected products
 
 ## Disclaimer:
-This projects is a Proof Of Concept (POC), so some functionalities are not available and other could be unreliable. 
+This projects is a Proof Of Concept (P.O.C.), so some functionalities may be not available or not working properly. 
 
 ## Code repository
 https://github.com/rtavares/bi-costs-calculator   
@@ -25,10 +25,10 @@ Note: to help speed up the development, we used this Django blueprint - same aut
 - Project tasks manager - [Make](https://www.gnu.org/software/make/) - 3.81
 - Code Version Control System - [Git](https://git-scm.com/) - 2.39.3
 - DVCS host - GitHub
-- OS - MacOS Sonona - 14.5
+- OS - MacOS Sonoma - 14.5
 ### Development environments
 - On top of local OS, inside a virtual environment
-- On containers using Docker - TBD
+- On containers using Docker 
 ## Local setup
 - Clone the code repository to your local development folder - `git clone https://github.com/rtavares/bi-costs-calculator.git`
   - The "project root" is the directory `project` from where the commands should be run.
@@ -42,13 +42,26 @@ Note: to help speed up the development, we used this Django blueprint - same aut
     - `<project_venv>/bin/activate`
       - `pip install -U pip`
       - `pip install -r backend/requirements.txt`
-  - Bootstrapping the project:
-    - `backend/source/products_prices/manage.py migrate --settings=products_prices.settings.development_local`
-    - `backend/source/products_prices/manage.py createsuperuser --settings=products_prices.settings.development_local`
+  - ### Bootstrapping the project:
+    - On local, using SQlite:
+      - `backend/source/products_prices/manage.py migrate --settings=products_prices.settings.development_local`
+      - `backend/source/products_prices/manage.py createsuperuser --settings=products_prices.settings.development_local`
+    - On containers, using PostGreSQL:
+      - `make start` or `make startbg`
+      - `make osshell` and once inside run `./products_prices/manage.py createsuperuser`
+        - or
+      - `docker-compose run backend products_prices/manage.py createsuperuser`
+      - The same syntax can be used to run any `manage.py` command.
+      - Migrations are run automatically every time the container starts.
+
 ## Running the project
 - Locally inside the virtualenv:
   - Type `make` to see a list of available commands
-  - `make run-local` starts the project locally, available on the usual Django port 8000.
+  - `make run-local` starts the project locally.
+- On containers:
+  - `make start` or `make startbg`
+- The project web page will be available on the usual Django port 8000.
+  
 ### Questions?
 Please feel free to open an issue on the GitHub repository of the project.
 ## To-Do
@@ -68,7 +81,6 @@ Please feel free to open an issue on the GitHub repository of the project.
 ### Project
 - Add git pre-commit hooks
 - Add tests
-- Add containerized environment
 - Add Terraform script to deploy to AWS ECS
 
 ----
