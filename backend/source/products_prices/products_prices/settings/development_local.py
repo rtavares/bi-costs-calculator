@@ -5,12 +5,12 @@ from .development import *
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+DATABASE_LOCATION =  BASE_DIR.resolve().parent / "db.sqlite3"
+print(f"SqLite Database location: {DATABASE_LOCATION}")
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": DATABASE_LOCATION,
     }
 }
