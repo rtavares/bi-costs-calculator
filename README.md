@@ -48,11 +48,11 @@ Note: to help speed up the development, we used this Django blueprint - same aut
       - `backend/source/products_prices/manage.py createsuperuser --settings=products_prices.settings.development_local`
     - On containers, using PostGreSQL:
       - `make start` or `make startbg`
-    - `make osshell` and once inside run `./products_prices/manage.py createsuperuser`
-      - or
-    - `docker-compose run backend products_prices/manage.py createsuperuser`
-    - The same syntax can be used to run any `manage.py` command.
-    - Migrations are run automatically every time the container starts.
+      - `make osshell` and once inside run `./products_prices/manage.py createsuperuser`
+        - or
+      - `docker-compose run backend products_prices/manage.py createsuperuser`
+      - The same syntax can be used to run any `manage.py` command.
+      - Migrations are run automatically every time the container starts.
 
 ## Running the project
 - Locally inside the virtualenv:
