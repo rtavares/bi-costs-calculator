@@ -25,7 +25,7 @@ Note: to help speed up the development, we used this Django blueprint - same aut
 - Project tasks manager - [Make](https://www.gnu.org/software/make/) - 3.81
 - Code Version Control System - [Git](https://git-scm.com/) - 2.39.3
 - DVCS host - GitHub
-- OS - MacOS Sonona - 14.5
+- OS - MacOS Sonoma - 14.5
 ### Development environments
 - On top of local OS, inside a virtual environment
 - On containers using Docker 
