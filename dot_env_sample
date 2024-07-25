@@ -1,0 +1,20 @@
+# Rename this file to '.env' and adjust the values as required
+## Please guarantee the the '.env' file is in .gitignore
+### Be aware of never commiting sensible credentials like passwords or API keys
+
+NGINX_INTERNAL_PORT=80
+
+# Required to run in containers
+DJANGO_DATABASE=postgres
+# DJANGO_SETTINGS_MODULE is required to run in Docker
+DJANGO_SETTINGS_MODULE=products_prices.settings.development_docker
+DJANGO_INTERNAL_PORT=8000
+DJANGO_EXTERNAL_PORT=8000
+
+# Make POSTGRES_HOST equal to the database service name
+POSTGRES_HOST=project_db
+POSTGRES_PORT=5432
+POSTGRES_DB=django_bi_pp_dev
+POSTGRES_USER=dev_user
+POSTGRES_PASSWORD=dev_tmp_pwd
+POSTGRES_DB=django_bi_pp_dev

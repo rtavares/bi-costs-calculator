@@ -1,23 +1,32 @@
 #!/bin/sh
 
-if [ "$DATABASE" = "postgres" ]
+ echo "Connection Data:" $POSTGRES_HOST $POSTGRES_PORT
+# DJANGO_SETTINGS_MODULE defined in .env / docker-compose.yaml environment
+echo "DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}"
+
+if [ "$DJANGO_DATABASE" = "postgres" ]
 then
     echo "Waiting for postgres..."
 
-    while ! nc -z $SQL_HOST $SQL_PORT; do
-      sleep 0.1
+    echo "Data:" $POSTGRES_HOST $POSTGRES_PORT
+
+    while ! nc -z $POSTGRES_HOST $POSTGRES_PORT; do
+      sleep 0.6
     done
 
     echo "PostgreSQL started"
 fi
 
-python manage.py flush --no-input
-python manage.py migrate
-python manage.py collectstatic --no-input
+/project/products_prices/manage.py flush --no-input
+/project/products_prices/manage.py migrate
+/project/products_prices/manage.py collectstatic --no-input
+
 
 # Prod
-#gunicorn app.wsgi:application --bind 0.0.0.0:8000
+# gunicorn --chdir products_prices products_prices.wsgi:application  --bind 0.0.0.0:$DJANGO_INTERNAL_PORT
 # Dev
-gunicorn app.wsgi:application --bind 0.0.0.0:8000 --reload
+#gunicorn --chdir products_prices products_prices.wsgi:application  --bind 0.0.0.0:$DJANGO_INTERNAL_PORT --reload
+cd /project/products_prices
+/project/products_prices/manage.py runserver 0.0.0.0:$DJANGO_INTERNAL_PORT
 
 exec "$@"
