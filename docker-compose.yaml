@@ -5,43 +5,48 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: /bin/sh /project/entrypoint.sh
+    image: bi_products_prices_backend
+    container_name: bi_products_prices_backend
+    command: /bin/sh /shell/entrypoint.sh
     volumes:
-      - ./backend/source/app:/project
-      - ./backend/shell/entrypoint.sh:/project/entrypoint.sh
+      - ./backend/source:/project
+      - ./backend/shell/entrypoint.sh:/shell/entrypoint.sh
       - static_volume:/project/staticfiles
     ports:
-      - "8000:8000"
+      - "${DJANGO_EXTERNAL_PORT}:${DJANGO_INTERNAL_PORT}"
     expose:
       - 8000
-    #    env_file:
-    #      - ../.env
+    environment:
+      DJANGO_DATABASE: "${DJANGO_DATABASE}"
+      DJANGO_SETTINGS_MODULE: "${DJANGO_SETTINGS_MODULE}"
+      DJANGO_INTERNAL_PORT: "${DJANGO_INTERNAL_PORT}"
+      POSTGRES_HOST: "${POSTGRES_HOST}"
+      POSTGRES_PORT: "${POSTGRES_PORT}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     depends_on:
-      - db
+      - project_db
+    # Required on dev to allow pdb on a running container
+    stdin_open: true
+    tty: true
 
-  nginx:
-      build: ./nginx
-      ports:
-        - "${HOST_DEFAULT_PORT}:80"
-      volumes:
-        - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
-        - ./nginx/backend.local:/etc/nginx/sites-enabled/backend.local
-        - static_volume:/project/staticfiles
-    #    depends_on:
-    #      - backend
-
-  db:
+  project_db:
       image: postgres:13.0-alpine
+      container_name: bi_products_prices_db
+      restart: always
       volumes:
-        - ./postgres_data:/var/lib/postgresql/data/
-#        - postgres_data:/var/lib/postgresql/data/
+        - postgres_db_data:/var/lib/postgresql/data/
       environment:
-        - POSTGRES_USER=app_user
-        - POSTGRES_PASSWORD=app_pwd
-        - POSTGRES_DB=django_app_dev
+        POSTGRES_HOST: "${POSTGRES_HOST}"
+        POSTGRES_PORT: "${POSTGRES_PORT}"
+        POSTGRES_DB: "${POSTGRES_DB}"
+        POSTGRES_USER: "${POSTGRES_USER}"
+        POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+
       ports:
         - "5432:5432"
 
 volumes:
-    postgres_data:
+    postgres_db_data:
     static_volume:
