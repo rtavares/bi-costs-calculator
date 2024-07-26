@@ -17,7 +17,6 @@ then
     echo "PostgreSQL started"
 fi
 
-/project/products_prices/manage.py flush --no-input
 /project/products_prices/manage.py migrate
 /project/products_prices/manage.py collectstatic --no-input
 
